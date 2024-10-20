@@ -17,6 +17,8 @@ Open XAMPP Control Panel, start the Apache and MySQL modules.
 Step 2: Project Setup
 Clone the repository to your local machine.
 
+
+
 bash
 Copy code
 git clone https://github.com/yourusername/pet-rescue-management.git
