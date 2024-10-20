@@ -1,0 +1,26 @@
+try:
+obj=authenticate(username=u,password=p)
+if obj is not None:
+ if obj.is_superuser == 1:
+    return redirect('/admin_home')
+ else:
+    messages.add_message(request, messages.INFO, 'Invalid User.')
+    return redirect('/login')
+except Exception:
+newp=make_password(p)
+try:
+  obj1=login.objects.get(username=u,password=newp)
+  if obj1 is not None:
+    if(obj1.Usertype=="User"):
+     return redirect('/User_home')
+    elif obj1.Usertype=="Adoption Center":
+     return redirect('Adoption_center_home')
+    else:
+     messages.add_message(request, messages.INFO, 'Invalid User.')
+     return redirect('/login')
+  else:
+    messages.add_message(request, messages.INFO, 'Invalid User.')
+    return redirect('/login')
+except Exception:
+    messages.add_message(request, messages.INFO, 'Invalid User.')
+    return redirect('/login')

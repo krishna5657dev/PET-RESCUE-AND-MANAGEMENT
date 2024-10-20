@@ -1,0 +1,53 @@
+
+{% extends "User1/header_adm.html" %}
+{% block content %}
+{% load static %}
+
+
+		<div id="page-wrapper">
+			<div class="main-page">
+
+					<div class="col-sm-12" style="margin-top: 10px;">
+
+                <h3 class="title1">Users List </h3>
+
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                          <div class="alert alert-success"> {{message }}</div>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% if data %}
+                        <table class="table table-striped table-bordered">
+                            <thead><th>Id</th><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Address</th><th>Mail - id</th></thead>
+
+                            {%  for k in data  %}
+
+                              <tr>
+
+
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{k.firstname}}</td>
+                                    <td>{{k.lastname}}</td>
+                                    <td>{{k.phone_number }}</td>
+                                    <td>{{k.address}}<br>
+                                        <td>{{k.mail_id}}<br>
+                                    </td>
+
+                                </tr>
+
+                                {% endfor  %}
+                                {% else %}
+                                <div class="alert alert-success"> No List Available</div>
+                                {% endif %}
+
+                          </table>
+					</div>
+					<div class="row">
+
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+        {% endblock %}

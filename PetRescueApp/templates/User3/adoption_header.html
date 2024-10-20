@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pet Rescue</title>
+<link href="{% static 'assets/css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<!-- Custom Theme files -->
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'assets/css/mystyle.css' %}" rel="stylesheet" type="text/css"  />
+<!-- Custom Theme files -->
+<!-- navigation -->
+<link href="{% static 'assets/css/component.css' %}" rel="stylesheet" type="text/css"  />
+<!-- navigation -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="My Pets Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<script src="{% static 'assets/js/responsiveslides.min.js' %}"></script>
+<script src="{% static 'assets/js/myjs.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+  <script type="text/javascript" src="{% static 'assets/js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/easing.js' %}"></script>
+</head>
+<body>
+    <div class="header">
+		<div class="header-top">
+			<div class="container">
+				<p class="location"><i class="location"></i>  {% include 'loc.html' %}</p>
+				<p class="phonenum">{% include 'num.html' %}</p>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="container">
+				<div class="logo">
+					{% include 'logo.html' %}
+				</div>
+				<span class="menu"></span>
+				<div class="top-menu">
+					<ul>
+						<nav class="cl-effect-5">
+							<li><a href="/Adoption_center_home"><span data-hover="Home">Home</span></a></li>
+							<li><a href="/ad_Boarding"><span data-hover="Boarding ">Boarding </span></a></li>
+							<li><a href="/ad_Grooming"><span data-hover="Grooming ">Grooming </span></a></li>
+							<li><a href="/ad_Rescue_Info"><span data-hover="Rescue">Rescue</span></a></li>
+							<li><a href="/ad_Adoption"><span data-hover="Adoption">Adoption</span></a></li>
+							<li><a href="/ad_Feedback"><span data-hover="Feedback">Feedback</span></a></li>
+							<li><a href="/ad_Profile"><span data-hover="Profile">Profile</span></a></li>
+							<li><a href="/User_Logout"><span data-hover="Logout">Logout</span></a></li>
+						</nav>
+					</ul>
+				</div>
+				<!-- script for menu -->
+				<script>
+				$( "span.menu" ).click(function() {
+				  $( ".top-menu" ).slideToggle( "slow", function() {
+				    // Animation complete.
+				  });
+				});
+			</script>
+			<!-- script for menu -->
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+    {% block content %}{% endblock %}
+    <div class="footer1">
+		<div class="container">
+			<div class="follow-us-on">
+				<h4>Pets Rescue</h4>
+
+				<p></p>
+				<div class="copyrights">
+					<p>  <a href="#"> </a></p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- footer-section-ends -->
+	<script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear'
+					 		};
+							*/
+
+							$().UItoTop({ easingType: 'easeOutQuart' });
+
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+</body>
+</html>

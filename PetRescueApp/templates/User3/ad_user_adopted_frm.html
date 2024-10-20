@@ -1,0 +1,213 @@
+{% extends "User3/adoption_header.html" %}
+{% block content %}
+{% load static %}
+
+<div class="content">
+    <div class="main">
+<div class="container">
+<div class="blog-content">
+ <div class="blog-content-head text-left">
+    <div class="frm_heading" style="text-align: center; margin-bottom: 10px;">
+       <h2>Details Of Pet - For Adoption</h2>
+
+     </div>
+</div>
+    <div class="section group">
+
+              <div class="blog_posts">
+                <div class="section group example">
+                    <div class="col-sm-2">
+                        <div class="blog_img">
+                            <ul class="sidemenu">
+                                <li><a href="/ad_Rescue_Info">Rescue Info List</a></li>
+                                <li><a href="/ad_Rescue_Info_Reply">Replied List</a></li>
+                                <li><a href="/ad_adopted_list">Adopted List</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="sideimg">
+                            <img src="{% static 'assets/images/pic8.jpg' %}" alt="" width="100%" height="60%"/>
+                        </div>
+                    </div>
+                        <div class="col-sm-10">
+
+                            <div class="blog_data">
+
+
+
+						 {% if messages %}
+						 <ul class="messages">
+							 {% for message in messages %}
+						   <div class="alert alert-success"> {{message }}</div>
+							 {% endfor %}
+						 </ul>
+						 {% endif %}
+                         <form method="post" action="/save_send_to_adopton/{{rescue_id}}" method="post" id="myform" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>type of pet</label>
+                               <select name="animal_name" class="form-control">
+<option value="">--Select</option>
+<option value="Cats">Cats</option>
+<option value="Dogs">Dogs</option>
+<option value="Birds">Birds</option>
+<option value="Rabbits">Rabbits</option>
+<option value="Horses">Horses</option>
+<option value="Ferrets">Ferrets</option>
+<option value="Fish">Fish</option>
+<option value="Guinea pigs">Guinea pigs</option>
+<option value="Amphibians">Amphibians</option>
+<option value="Reptiles">Reptiles</option>
+                               </select>
+
+
+                          </div>
+                            <div class="form-group">
+                                <label> Tag Name</label>
+                                <input name="tagname" type="text" class="form-control">
+                           </div>
+
+                           <div class="form-group">
+                            <label> Breed</label>
+                            <input name="breed" type="text" class="form-control">
+                       </div>
+                       <div class="form-group">
+                        <label> Age</label>
+                        <input name="age" type="text" class="form-control">
+                   </div>
+                   <div class="form-group">
+                    <label>Gender</label>
+                    &nbsp;&nbsp;&nbsp;<input checked name="gender" type="radio"  value="Male"> <label for="gender_male"> Male</label>
+                   <input name="gender" type="radio" value="Female"><label for="gender_female">Female</label><br>
+              </div> <div class="form-group">
+                <label>Vaccinated Date</label>
+                <input name="date"  id="date" type="text" class="form-control">
+           </div>
+           <div class="form-group">
+            <label> Photo</label>
+            <input name="photo" type="file" class="form-control">
+       </div>
+
+                      <div class="col-sm-12"  style="text-align: center;"><div>
+                        <input type="submit" value="Submit" class="myButton">
+              </div></div>
+                   </form>
+
+
+
+                        </div>
+                    </div>
+                     <div class="clearfix"></div>
+                </div>
+             <div class="clearfix"></div>
+    </div>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+<link href="{% static 'assets/jquery/jquery-ui.css' %}" rel="stylesheet" type="text/css"  />
+
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.min.js' %}"></script>
+<script>
+$(function() {
+
+
+	$( "#date" ).datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true,
+changeYear: true,maxDate:'0', });
+
+
+  });</script>
+  			<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+              <script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+(function ($, W, D)
+{
+var JQUERY4U = {};
+JQUERY4U.UTIL =
+{
+setupFormValidation: function ()
+{
+  $.validator.addMethod(
+"regex",
+function(value, element, regexp) {
+var check = false;
+return this.optional(element) || regexp.test(value);
+},
+"Not a valid Input."
+);
+
+//form validation rules
+$("#myform").validate({
+  rules: {
+
+    animal_name: {
+
+                          required: true,
+
+
+                      },
+                      tagname: {
+
+                          required: true,
+
+                        minlength: 3,
+
+
+                      },
+                      breed: {
+                    required: true,
+                    minlength: 3,
+                    maxlength:150,
+
+                        },
+                        age: {
+                          required: true,
+                          maxlength:3,
+                          digits:true,
+                      },
+                      date: {
+                          required: true,
+
+
+                      },
+                      gender: {
+                          required: true,
+
+
+                      },
+                      photo: {
+                          required: true,
+                          extension:"jpg|png|jpeg"
+
+                      },
+
+                    },
+                    messages: {
+
+
+
+    },
+    submitHandler: function (form) {
+    form.submit();
+    }
+});
+}
+}
+//when the dom has loaded setup form validation rules
+$(D).ready(function ($) {
+JQUERY4U.UTIL.setupFormValidation();
+});
+})(jQuery, window, document);
+</script>
+
+<!-- content-section-ends -->
+<!-- footer-section-starts -->
+
+{% endblock %}
+<!-- content-section-ends -->
+<!-- footer-section-starts -->

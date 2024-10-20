@@ -1,0 +1,292 @@
+
+{% extends "header.html" %}
+{% block content %}
+{% load static %}
+    <!-- header-section-starts -->
+	<div class="header">
+		<div class="header-top">
+			<div class="container">
+                <p class="location"><i class="location"></i>  {% include 'loc.html' %}</p>
+				<p class="phonenum">{% include 'num.html' %}</p>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="container">
+				<div class="logo">
+					{% include 'logo.html' %}
+				</div>
+				<span class="menu"></span>
+				<div class="top-menu">
+					<ul>
+					<nav class="cl-effect-5">
+						<li><a class="active" href="/" data-hover="HOME">Home</a></li>
+						<li><a href="/login" >Login</a></li>
+
+						<li><a href="/Customer_register" >User Registration </a></li>
+						<li><a href="/Adoption_center_register" >Adoption Center Registration </a></li>
+					</nav>
+					</ul>
+				</div>
+				<!-- script for menu -->
+				<script>
+				$( "span.menu" ).click(function() {
+				  $( ".top-menu" ).slideToggle( "slow", function() {
+				    // Animation complete.
+				  });
+				});
+			</script>
+			<!-- script for menu -->
+			<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div class="banner">
+    <div class="slider">
+        <div class="callbacks_container">
+            <ul class="rslides" id="slider">
+                <li>
+                    <img src="{% static 'assets/images/dog3.jpg' %}" alt="" style="width: 100%; height: auto;"/>
+                    <div class="caption" style="background-color: none; padding: 20px; border-radius: 10px; margin-top: 250px;">
+                        <h2 style="font-family: 'Georgia', serif; font-size: 2.5rem; color: white; text-align: center;">
+                            Until one has loved an animal a part of one's soul remains unawakened.
+                        </h2>
+                    </div>
+                </li>
+                <li>
+                    <img src="{% static 'assets/images/2.jpg' %}" alt=""/>
+                    <div class="caption" style="background-color: none; padding: 20px; border-radius: 10px; margin-top: 250px;">
+                        <h2 style="font-family: 'Georgia', serif; font-size: 2.5rem; color: white; text-align: center;">
+                            A dog is the only thing on earth that loves you more than you love yourself.
+                        </h2>
+                    </div>
+                </li>
+                <li>
+                    <img src="{% static 'assets/images/1.jpg' %}" alt=""/>
+                    <div class="caption" style="background-color: none; padding: 20px; border-radius: 10px; margin-top: 250px;">
+                        <h2 style="font-family: 'Georgia', serif; font-size: 2.5rem; color: white; text-align: center;">
+                            Money can buy you a fine dog, but only love can make him wag his tail.
+                        </h2>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+	
+	
+	<!-- content-section-starts -->
+<!-- content-section-starts -->
+<div class="content">
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        .welcome-section {
+            display: flex; /* Use flexbox to align items */
+            align-items: center; /* Vertically center items */
+            justify-content: space-between; /* Space between text and images */
+        }
+
+        .welcome-grid {
+            flex: 1; /* Allow text to take available space */
+        }
+
+        .quote {
+            animation: fadeIn 1s forwards, fadeOut 1s forwards; /* Fade-in and fade-out animations */
+            animation-delay: 0s, 5s; /* Delay for fade-out */
+            animation-fill-mode: forwards; /* Keep the last keyframe */
+            opacity: 0; /* Start with opacity 0 */
+        }
+
+		.quote:nth-child(1) {
+			animation-delay: 0s, 2s; /* Fade in immediately, fade out after 2s */
+		}
+		
+		.quote:nth-child(2) {
+			animation-delay: 0.5s, 2.5s; /* Fade in after 0.5s, fade out after 2.5s */
+		}
+		
+		.quote:nth-child(3) {
+			animation-delay: 1s, 3s; /* Fade in after 1s, fade out after 3s */
+		}
+		
+		.quote:nth-child(4) {
+			animation-delay: 1.5s, 3.5s; /* Fade in after 1.5s, fade out after 3.5s */
+		}
+		
+		.quote:nth-child(5) {
+			animation-delay: 2s, 4s; /* Fade in after 2s, fade out after 4s */
+		}
+		
+		.quote:nth-child(6) {
+			animation-delay: 2.5s, 4.5s; /* Fade in after 2.5s, fade out after 4.5s */
+		}
+		
+		.quote:nth-child(7) {
+			animation-delay: 3s, 5s; /* Fade in after 3s, fade out after 5s */
+		}
+		
+		.quote:nth-child(8) {
+			animation-delay: 3.5s, 5.5s; /* Fade in after 3.5s, fade out after 5.5s */
+		}
+		
+		
+
+        .quote-set-2 {
+            display: none; /* Hide the second set initially */
+        }
+
+        .images {
+            display: flex; /* Align images in a row */
+            flex-direction: row; /* Keep images in a single row */
+            justify-content: flex-end; /* Align images to the right */
+            margin-right: 100px; /* Move images slightly to the left from the right margin */
+        }
+
+        .img1, .img2 {
+            margin-left: 0px; /* Add space between images */
+        }
+    </style>
+    
+    <div class="welcome-section">
+        <div class="col-md-6 welcome-grid text-center" style="padding: 20px;">
+            <div class="first-set">
+                <h3 class="quote" style="font-family: 'Georgia', serif; font-size: 2.4rem; color: #4A4A4A;">
+                    
+                </h3>
+                <h3 class="quote" style="font-family: 'Georgia', serif; font-size: 4rem; color: #4A4A4A; margin-top: 20px;">
+                    
+                </h3>
+                <h3 class="quote" style="font-family: 'Georgia', serif; font-size: 3rem; color: #4A4A4A; margin-top: 20px;">
+                    "The best therapist has fur and four legs."
+                </h3>
+                <h3 class="quote" style="font-family: 'Georgia', serif; font-size: 3rem; color: #4A4A4A; margin-top: 20px;">
+                    "Happiness is a warm puppy."
+                </h3>
+            </div>
+            <div class="second-set quote-set-2">
+                <h3 class="quote" style="font-family: 'Georgia', serif; font-size: 3rem; color: #4A4A4A; margin-top: 20px;">
+                    "Dogs are not our whole life, but they make our lives whole."
+                </h3>
+                
+            </div>
+
+			<div class="third-set quote-set-3">
+				<h3 class="quote" style="font-family: 'Georgia', serif; font-size: 3rem; color: #4A4A4A; margin-top: 20px;">
+					"Embrace the joy and companionship that pets bring to our lives. They are not just animals; they are cherished members of our families."
+				</h3>
+
+				
+
+			</div>
+
+			<div class="fourth-set quote-set-4">
+				<h3 class="quote" style="font-family: 'Georgia', serif; font-size: 3rem; color: #4A4A4A; margin-top: 20px;">
+
+"Pets bring joy and laughter into our lives, reminding us of the beauty in simple moments."
+				</h3>
+			</div>
+			
+			
+
+        </div>
+        
+        <div class="col-md-6 images">
+            <div class="img1">
+                <img src="{% static 'assets/images/a1.jpg' %}" class="img-responsive" alt="" />
+            </div>
+            <div class="img2">
+                <img src="{% static 'assets\images\cute.jpeg' %}" class="img-responsive" alt="" />
+            </div>
+        </div>
+    </div>
+    
+    <div class="clearfix"></div>
+</div>
+
+<script>
+    // Function to toggle visibility of quote sets
+   // Function to toggle visibility of quote sets
+// Function to toggle visibility of quote sets
+function toggleQuotes() {
+    const firstSet = document.querySelector('.first-set');
+    const secondSet = document.querySelector('.second-set');
+    const thirdSet = document.querySelector('.third-set');
+    const fourthSet = document.querySelector('.fourth-set');
+
+    if (firstSet.style.display !== 'none') {
+        firstSet.style.display = 'none';
+        secondSet.style.display = 'block';
+    } else if (secondSet.style.display !== 'none') {
+        secondSet.style.display = 'none';
+        thirdSet.style.display = 'block';
+    } else if (thirdSet.style.display !== 'none') {
+        thirdSet.style.display = 'none';
+        fourthSet.style.display = 'block';
+    } else {
+        fourthSet.style.display = 'none';
+        firstSet.style.display = 'block';
+    }
+}
+
+// Initial display setup
+document.querySelector('.first-set').style.display = 'block';
+document.querySelector('.second-set').style.display = 'none';
+document.querySelector('.third-set').style.display = 'none';
+document.querySelector('.fourth-set').style.display = 'none';
+
+// Call toggleQuotes every 10 seconds (adjust timing as needed)
+setInterval(toggleQuotes, 5000); // Adjust based on timing preference
+
+
+</script>
+
+<!-- Link to Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+
+
+			{% comment %} <--ABOUT--> {% endcomment %}
+			<div class="about-section text-center" style="background-color: #d4f2db; padding: 40px 0; border-radius: 10px; margin-top: 20px;">
+				<div class="container">
+					<h2 style="font-family: 'Georgia', serif; font-size: 2.5rem; margin-bottom: 30px; color: #333;">About Us</h2>
+					<div class="row">
+						<div class="col-md-6 about-section-grid" style="padding: 20px;">
+							<h4 style="font-family: 'Georgia', serif; font-size: 2rem; color: #4A4A4A; margin-bottom: 15px;">Our Mission</h4>
+							<p style="font-family: 'Georgia', serif; font-size: 1.4rem; color: #555;">
+								We are dedicated to rescuing, rehabilitating, and finding loving homes for abandoned and neglected pets.
+							</p>
+						</div>
+						<div class="col-md-6 about-section-grid" style="padding: 20px;">
+							<h4 style="font-family: 'Georgia', serif; font-size: 2rem; color: #4A4A4A; margin-bottom: 15px;">Our Values</h4>
+							<p style="font-family: 'Georgia', serif; font-size: 1.4rem; color: #555;">
+								Compassion, community, and commitment to animal welfare are at the heart of what we do.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+		</div>
+	<!-- content-section-ends -->
+
+
+		{% endblock %}

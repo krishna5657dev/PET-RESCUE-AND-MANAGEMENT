@@ -1,0 +1,257 @@
+
+{% extends "header.html" %}
+{% block content %}
+{% load static %}
+    <!-- header-section-starts -->
+	<div class="header">
+		<div class="header-top">
+			<div class="container">
+				<p class="location"><i class="location"></i>  {% include 'loc.html' %}</p>
+				<p class="phonenum">{% include 'num.html' %}</p>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="container">
+				<div class="logo">
+                    {% include 'logo.html' %}
+				</div>
+				<span class="menu"></span>
+				<div class="top-menu">
+					<ul>
+					<nav class="cl-effect-5">
+						<li><a  href="/" data-hover="HOME">Home</a></li>
+						<li><a href="/login" >Login</a></li>
+						<li><a class="active" href="/Customer_register" d>User Registration </a></li>
+						<li><a href="/Adoption_center_register" d>Adoption Center Registration </a></li>
+
+					</nav>
+					</ul>
+				</div>
+				<!-- script for menu -->
+				<script>
+				$( "span.menu" ).click(function() {
+				  $( ".top-menu" ).slideToggle( "slow", function() {
+				    // Animation complete.
+				  });
+				});
+			</script>
+			<!-- script for menu -->
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!-- header-section-ends -->
+	<!-- content-section-starts -->
+	<div class="content">
+		<div class="main">
+			<div class="container">
+			         <div class="contact-form">
+				  	   <h2>USER Registration</h2>
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+  <div class="alert alert-success"> {{message }}</div>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form method="post" action="/save_user/" id="myform" style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+    {% csrf_token %}
+    
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; ">
+        <div style="flex: 1; min-width: 280px;">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">FIRST NAME</label>
+                <input name="firstname" type="text" class="form-control" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">LAST NAME</label>
+                <input name="lastname" type="text" class="form-control" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">PHONE NUMBER</label>
+                <input name="phone" type="text" class="form-control" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">ADDRESS</label>
+                <textarea name="address" class="form-control" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
+            </div>
+        </div>
+        
+        <div style="flex: 1; min-width: 280px;">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">MAIL - ID</label>
+                <input name="mail_id" type="text" class="form-control" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">USER NAME</label>
+                <input name="username" id="id_username" type="text" class="form-control" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+                <span id="cb"></span>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">PASSWORD</label>
+                <input name="password" type="password" id="password" class="form-control" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">CONFIRM PASSWORD</label>
+                <input name="cpassword" type="password" class="form-control" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+                <input type="hidden" id="uname" name="uname">
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <input type="submit" value="Submit" class="myButton" style="padding: 10px 20px; border-radius: 4px; border: none; background-color: #007bff; color: white; cursor: pointer;">
+    </div>
+</form>
+
+
+						<script>
+							$("#id_username").keyup(function () {
+								$('#uname').val("");
+							   var username = $(this).val();
+							   var count = username.length;
+							   $('#cb').html("");
+							   if(count>4)
+							  {
+							   $.ajax({
+									 url: '/check_username/',
+									 data: {
+										 'username': username
+									 },
+									 dataType: 'json',
+									 success: function (data) {
+										  if (data.username_exists) {
+
+
+											$('#cb').css('color','red');
+                                        $('#cb').html(data.error);
+
+										  }
+										  else{
+
+											$('#cb').css('color','green');
+                                        $('#cb').html(data.success);
+										$('#uname').val(1);
+										  }
+									 }
+							   });
+							}
+							});
+						 </script>
+						<script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+						<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+						<script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+	(function ($, W, D)
+  {
+  var JQUERY4U = {};
+  JQUERY4U.UTIL =
+      {
+          setupFormValidation: function ()
+          {
+            $.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+    "Not a valid Input."
+);
+
+          //form validation rules
+          $("#myform").validate({
+			ignore: [],
+			rules: {
+								firstname: {
+								  required: true,
+								  regex :/^[a-zA-Z ]+$/,
+								  minlength: 3,
+
+								},
+								lastname: {
+								  required: true,
+								  regex :/^[a-zA-Z ]+$/,
+								  minlength: 3,
+								},
+								phone: {
+									required: true,
+									digits:true,
+                       				minlength: 10,
+                       				maxlength: 10,
+                       				regex : /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/
+								},
+								address: {
+								  required: true,
+								  minlength: 3,
+
+								},
+								mail_id: {
+								 required: true,
+                    			 regex :  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+								},
+								username: {
+									required: true,
+                    				regex : /^[A-Za-z0-9@]+$/,
+                                    minlength: 5,
+                                    maxlength: 15,
+
+								},
+								password: {
+									required: true,
+                     				regex : /^[A-Za-z0-9@#*]+$/,
+                     				minlength: 5,
+                                    maxlength: 15,
+
+								},
+								cpassword: {
+									required: true,
+                   					regex : /^[A-Za-z0-9@#*]+$/,
+                       				minlength: 5,
+                      				maxlength: 15,
+                                  equalTo: "#password"
+
+								},
+								uname: {
+									required: true,
+
+
+								},
+							  },
+							  messages: {
+
+								phone: "Please Enter Valid 10 digit Phone Number - Starting from 6, 7 or 8 or 9",
+
+                  username: "Please Enter Valid User Name(5-15 digit alphanumeric username",
+                    password: "Please Enter Valid Password Name(5-15 digit alphanumeric  password  and @#* also allowed",
+                       cpassword: "Please Enter Valid Password Name(5-15 digit alphanumeric confirm password and same as above password and @#* also allowed",
+					   uname:"User name is not available",
+
+              },
+              submitHandler: function (form) {
+              form.submit();
+              }
+          });
+        }
+      }
+  //when the dom has loaded setup form validation rules
+  $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+  });
+  })(jQuery, window, document);
+</script>
+</script>
+					    <div class="clearfix"></div>
+				  </div>
+
+	          </div>
+
+		</div>
+	</div>
+	<!-- content-section-ends -->
+	<!-- footer-section-starts -->
+	{% endblock %}

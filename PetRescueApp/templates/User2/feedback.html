@@ -1,0 +1,304 @@
+{% extends "User2/user_header.html" %}
+{% block content %}
+{% load static %}
+
+    <!-- header-section-starts -->
+
+    <div class="content">
+        <div class="main">
+<div class="container">
+    <div class="blog-content">
+     <div class="blog-content-head text-left">
+        <div class="frm_heading" style="text-align: center;">
+           <h2></h2>
+
+         </div>
+    </div>
+        <div class="section group">
+
+                  <div class="blog_posts">
+                    <div class="section group example">
+                        <div class="col-sm-3">
+                            <div class="blog_img">
+                                <ul class="sidemenu">
+                                    <li><a href="/Feedback">Feedback - Adoption Center</a></li>
+                                    <li><a href="/Feedback_list">Feedback List</a></li>
+
+                                </ul>
+                            </div>
+                            <div class="sideimg">
+                                <img src="{% static 'assets/images/pic8.jpg' %}" alt="" width="100%" height="60%"/>
+                            </div>
+                        </div>
+                            <div class="col-sm-9">
+
+                                <div class="blog_data">
+                                    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+  <div class="alert alert-success"> {{message }}</div>
+    {% endfor %}
+</ul>
+{% endif %}
+<div style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+    <form method="post" action="/save_feedback/" id="myform" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2 style="text-align: center; margin-bottom: 20px;">Feedback Form</h2>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="subject" style="display: block; margin-bottom: 5px;">Subject</label>
+            <input id="subject" name="subject" type="text" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="feedback" style="display: block; margin-bottom: 5px;">Feedback</label>
+            <textarea id="feedback" name="feedback" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required></textarea>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="country" style="display: block; margin-bottom: 5px;">Country</label>
+            <select id="country" name="country" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
+                <option value="">--Select--</option>
+                {% for k in data %}
+                <option value="{{k.country_id}}">{{k.country}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="state" style="display: block; margin-bottom: 5px;">State</label>
+            <select id="state" name="state" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
+                <option value="">--Select--</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="district" style="display: block; margin-bottom: 5px;">District</label>
+            <select id="district" name="district" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
+                <option value="">--Select--</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="place" style="display: block; margin-bottom: 5px;">Place</label>
+            <select id="place" name="place" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
+                <option value="">--Select--</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="ad" style="display: block; margin-bottom: 5px;">Adoption Agency</label>
+            <select id="ad" name="ad" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
+                <option value="">--Select--</option>
+            </select>
+        </div>
+
+        <div style="text-align: center;">
+            <input type="submit" value="Submit" class="myButton" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        </div>
+    </form>
+</div>
+
+                               </div>
+                            </div>
+                             <div class="clearfix"></div>
+                        </div>
+                     <div class="clearfix"></div>
+            </div>
+
+
+     </div>
+
+        </div>
+
+</div>
+</div>
+<script>
+    $("#country").change(function () {
+   var country = $(this).val();
+
+   $.ajax({
+
+         url: '/display_state/',
+         data: {
+             'country_id': country
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = '<option value="">--Select--</option>';
+data.forEach(function (data) {
+html_data += `<option value="${data.state_id}">${data.state}</option>`
+});
+$("#state").html(html_data);
+
+
+
+         }
+   });
+
+});
+$("#state").change(function () {
+   var state = $(this).val();
+
+   $.ajax({
+
+         url: '/display_district/',
+         data: {
+             'state_id': state
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = '<option value="">--Select--</option>';
+data.forEach(function (data) {
+html_data += `<option value="${data.district_id}">${data.district}</option>`
+});
+$("#district").html(html_data);
+
+
+
+         }
+   });
+
+});
+$("#district").change(function () {
+   var district = $(this).val();
+
+   $.ajax({
+
+         url: '/display_place/',
+         data: {
+             'district_id': district
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = '<option value="">--Select--</option>';
+data.forEach(function (data) {
+html_data += `<option value="${data.place_id}">${data.place}</option>`
+});
+$("#place").html(html_data);
+
+
+
+         }
+   });
+
+});
+$("#place").change(function () {
+   var place = $(this).val();
+
+   $.ajax({
+
+         url: '/display_ad/',
+         data: {
+             'place_id': place
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = '<option value="">--Select--</option>';
+data.forEach(function (data) {
+html_data += `<option value="${data.login_id}">${data.agency_name}</option>`
+});
+$("#ad").html(html_data);
+
+
+
+         }
+   });
+
+});
+
+</script>
+	<script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+						<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+						<script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+	(function ($, W, D)
+  {
+  var JQUERY4U = {};
+  JQUERY4U.UTIL =
+      {
+          setupFormValidation: function ()
+          {
+            $.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+    "Not a valid Input."
+);
+
+          //form validation rules
+          $("#myform").validate({
+			rules: {
+
+                        subject: {
+
+                                    required: true,
+								  regex :/^[a-zA-Z. ]+$/,
+								  minlength: 3,
+
+								},
+								feedback: {
+
+                                    required: true,
+								  regex :/^[a-zA-Z. ]+$/,
+								  minlength: 3,
+                                  maxlength:150,
+
+								},
+                                country: {
+									required: true,
+
+
+								},
+                                state: {
+									required: true,
+
+
+								},
+                                district: {
+									required: true,
+
+
+								},
+                                place: {
+									required: true,
+
+
+								},
+                                ad: {
+									required: true,
+
+
+								},
+							  },
+							  messages: {
+
+
+
+              },
+              submitHandler: function (form) {
+              form.submit();
+              }
+          });
+        }
+      }
+  //when the dom has loaded setup form validation rules
+  $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+  });
+  })(jQuery, window, document);
+</script>
+	{% endblock %}
+	<!-- content-section-ends -->
+	<!-- footer-section-starts -->

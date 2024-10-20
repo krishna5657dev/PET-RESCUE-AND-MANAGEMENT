@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pet Rescue</title>
+<link href="{% static 'assets/css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<!-- Custom Theme files -->
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!-- Custom Theme files -->
+<!-- navigation -->
+<link href="{% static 'assets/css/component.css' %}" rel="stylesheet" type="text/css"  />
+<!-- navigation -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="My Pets Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<script src="{% static 'assets/js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+  <script type="text/javascript" src="{% static 'assets/js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/easing.js' %}"></script>
+</head>
+<body>
+    {% block content %}{% endblock %}
+	<div class="footer1" style="padding: 10px 0; font-size: 14px;"> <!-- Adjust padding and font size here -->
+		<div class="container">
+			<div class="follow-us-on">
+				<h4 style="margin-bottom: 5px;"></h4> <!-- Reduced margin -->
+				<p style="margin: 0;"></p> <!-- Optional text -->
+				<div class="copyrights">
+					<p style="margin: 0;">&copy; 2024 Pets Rescue. All rights reserved.</p> <!-- Reduced margin -->
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	
+	<!-- footer-section-ends -->
+	<script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear'
+					 		};
+							*/
+
+							$().UItoTop({ easingType: 'easeOutQuart' });
+
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+</body>
+</html>

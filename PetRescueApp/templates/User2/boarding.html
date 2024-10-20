@@ -1,0 +1,266 @@
+{% extends "User2/user_header.html" %}
+{% block content %}
+{% load static %}
+
+    <!-- header-section-starts -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery.fancybox.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.fancybox.css' %}" media="screen" />
+   <script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$('.fancybox').fancybox();
+
+		});
+	</script>
+
+    <div class="content">
+        <div class="main">
+<div class="container">
+    <div class="blog-content">
+     <div class="blog-content-head text-left">
+        <div class="frm_heading" style="text-align: center; margin-top: 10px;">
+           <h2>Pet Boardings</h2>
+
+         </div>
+    </div>
+        <div class="section group">
+
+                  <div class="blog_posts">
+                    <div class="section group example">
+                        <div class="col-sm-3">
+                            <div class="blog_img">
+                                <ul class="sidemenu">
+                                    <li><a href="/Boarding">Boarding </a></li>
+                                    <li><a href="/Boarding_status">Status</a></li>
+
+                                </ul>
+                            </div>
+                            <div class="sideimg">
+                                <img src="{% static 'assets/images/pic8.jpg' %}" alt="" width="100%" height="60%"/>
+                            </div>
+                        </div>
+                            <div class="col-sm-9">
+
+                                <div class="blog_data">
+                                    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+  <div class="alert alert-success"> {{message }}</div>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="" style="text-align: center; margin: 10px;">
+    <h3>Search Your Nearest Pets Adoption Center</h3>
+
+  </div>
+<div class="col-sm-2">
+    <div class="form-group"> <label for="">Country</label>
+        <select name="country" id="country" class="form-control">
+            <option value="">--Select--</option>
+            {%  for k in data %}
+            <option value="{{k.country_id}}">{{k.country}}</option>
+            {% endfor  %}
+        </select> </div></div>
+
+        <div class="col-sm-2">
+
+
+
+
+            <div class="form-group"> <label for="">State</label>
+                <select name="state" id="state" class="form-control">
+                    <option value="">--Select--</option>
+
+                </select> </div>
+            </div>
+            <div class="col-sm-2">
+        <div class="form-group"> <label for="">District</label>
+            <select name="district" id="district" class="form-control">
+                <option value="">--Select--</option>
+
+            </select> </div></div>
+            <div class="col-sm-3">
+<div class="form-group"> <label for="">Place</label>
+    <select name="place" id="place" class="form-control">
+        <option value="">--Select--</option>
+
+    </select>  </div></div>
+    <div class="col-sm-3">
+    <div class="form-group"> <label for="">Agency</label>
+        <select name="ad" id="ad" class="form-control">
+            <option value="">--Select--</option>
+
+        </select>  </div></div>
+  </div>
+  <div class="section group" id="res">
+
+  </div>
+</div>
+
+
+
+
+                               </div>
+                            </div>
+                             <div class="clearfix"></div>
+                        </div>
+                     <div class="clearfix"></div>
+            </div>
+
+
+     </div>
+
+        </div>
+
+</div>
+</div>
+<link href="{% static 'assets/jquery/jquery-ui.css' %}" rel="stylesheet" type="text/css"  />
+
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.min.js' %}"></script>
+<script>
+$(function() {
+
+
+	$( "#date" ).datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true,
+changeYear: true,maxDate:'0', });
+
+
+  });</script>
+<script>
+    $("#country").change(function () {
+   var country = $(this).val();
+
+   $.ajax({
+
+         url: '/display_state/',
+         data: {
+             'country_id': country
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = '<option value="">--Select--</option>';
+data.forEach(function (data) {
+html_data += `<option value="${data.state_id}">${data.state}</option>`
+});
+$("#state").html(html_data);
+
+
+
+         }
+   });
+
+});
+$("#state").change(function () {
+   var state = $(this).val();
+
+   $.ajax({
+
+         url: '/display_district/',
+         data: {
+             'state_id': state
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = '<option value="">--Select--</option>';
+data.forEach(function (data) {
+html_data += `<option value="${data.district_id}">${data.district}</option>`
+});
+$("#district").html(html_data);
+
+
+
+         }
+   });
+
+});
+$("#district").change(function () {
+   var district = $(this).val();
+
+   $.ajax({
+
+         url: '/display_place/',
+         data: {
+             'district_id': district
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = '<option value="">--Select--</option>';
+data.forEach(function (data) {
+html_data += `<option value="${data.place_id}">${data.place}</option>`
+});
+$("#place").html(html_data);
+
+
+
+         }
+   });
+
+});
+$("#place").change(function () {
+   var place = $(this).val();
+
+   $.ajax({
+
+         url: '/display_ad/',
+         data: {
+             'place_id': place
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = '<option value="">--Select--</option>';
+data.forEach(function (data) {
+html_data += `<option value="${data.login_id}">${data.agency_name}</option>`
+});
+$("#ad").html(html_data);
+
+
+
+         }
+   });
+
+});
+$("#ad").change(function () {
+   var ad = $(this).val();
+
+   $.ajax({
+
+         url: '/display_boarding/',
+         data: {
+             'ad': ad
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+            let html_data = "<div><h2>BOARDING SERVICES </h2></div><table class='table table-bordered'><tr><th>Pet Type</th><th>Cost Per Day</th></tr>";
+data.forEach(function (data) {
+html_data += `<tr><td>${data.pet_type}</td><td>${data.cost}</td><td><a href='/book_boarding_services/${data.b_service_id}'  class='btn btn-success'>Book Now</a></td><tr>`
+});
+html_data += "</table>";
+$("#res").html(html_data);
+
+
+
+         }
+   });
+
+});
+
+
+</script>
+
+	{% endblock %}
+	<!-- content-section-ends -->
+	<!-- footer-section-starts -->

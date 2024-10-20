@@ -1,0 +1,93 @@
+{% extends "User3/adoption_header.html" %}
+{% block content %}
+{% load static %}
+
+    <!-- header-section-starts -->
+
+	<!-- header-section-ends -->
+	<!-- content-section-starts -->
+	<div class="content" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+		<div class="main" style="max-width: 600px; width: 100%; margin: 0 auto; padding: 20px; border-radius: 8px;">
+			<div class="container">
+				<div>
+					<div class="contact-form">
+						<h2 style="color: black; background-color: transparent; text-align: center;">Welcome </h2>
+						{% if udata %}
+							<ul class="messages">
+								<div class="alert alert-success" style="background-color: transparent; text-align: center; font-size: 3em; color: green; font-weight: bold; font-family: Arial, sans-serif;">
+									{{ udata.agency_name }}
+								</div>
+								
+							</ul>
+						{% endif %}
+						{% if messages %}
+							<ul class="messages">
+								{% for message in messages %}
+									<div class="alert alert-danger">{{ message }}</div>
+								{% endfor %}
+							</ul>
+						{% endif %}
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+						<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+						<script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+	(function ($, W, D)
+  {
+  var JQUERY4U = {};
+  JQUERY4U.UTIL =
+      {
+          setupFormValidation: function ()
+          {
+            $.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+    "Not a valid Input."
+);
+
+          //form validation rules
+          $("#myform").validate({
+			rules: {
+
+								username: {
+									required: true,
+
+
+								},
+								password: {
+									required: true,
+
+
+								},
+
+							  },
+							  messages: {
+
+
+
+              },
+              submitHandler: function (form) {
+              form.submit();
+              }
+          });
+        }
+      }
+  //when the dom has loaded setup form validation rules
+  $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+  });
+  })(jQuery, window, document);
+</script>
+	{% endblock %}
+	<!-- content-section-ends -->
+	<!-- footer-section-starts -->

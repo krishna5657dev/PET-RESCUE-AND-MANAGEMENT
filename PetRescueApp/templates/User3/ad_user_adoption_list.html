@@ -1,0 +1,92 @@
+{% extends "User3/adoption_header.html" %}
+{% block content %}
+{% load static %}
+
+<div class="content">
+    <div class="main">
+<div class="container">
+<div class="blog-content">
+ <div class="blog-content-head text-left">
+    <div class="frm_heading" style="text-align: center; margin-bottom: 10px;">
+       <h2>Pets - Adoption</h2>
+
+     </div>
+</div>
+    <div class="section group">
+
+              <div class="blog_posts">
+                <div class="section group example">
+                    <div class="col-sm-3">
+                        <div class="blog_img">
+                            <ul class="sidemenu">
+                                <li><a href="/ad_Adoption">Pets List For Adoption</a></li>
+                                <li><a href="/adoption_request">Adoption Request</a></li>
+                                <li><a href="/adopted_list">Adopted Pet List</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="sideimg">
+                            <img src="{% static 'assets/images/pic8.jpg' %}" alt="" width="100%" height="60%"/>
+                        </div>
+                    </div>
+                        <div class="col-sm-9">
+
+                            <div class="blog_data">
+
+
+
+						 {% if messages %}
+						 <ul class="messages">
+							 {% for message in messages %}
+						   <div class="alert alert-danger"> {{message }}</div>
+							 {% endfor %}
+						 </ul>
+						 {% endif %}
+                         {% if data %}
+                         <table class="table table-striped table-bordered">
+                             <thead><th>Id</th><th>Type</th><th>Tagname</th><th>Breed</th><th>Age</th><th>Gender</th><th>Status</th><th>Photo</th></thead>
+
+                             {%  for k in data  %}
+
+                               <tr>
+
+
+                                     <td>{{forloop.counter}}</td>
+                                     <td>{{k.pet_type}}</td>
+                                     <td>{{k.tag_name }}</td>
+                                     <td>{{k.breed }}</div></td>
+                                     <td>{{k.age }} </td>
+                                     <td>{{k.gender }} </td>
+                                     <td class="alert alert-warning">{{k.status }}</td>
+
+                                     <td><img src={{k.photo}} width="180" height="150"></td>
+                                     <td><a href="/view_rescue_details/{{k.rescue_id}}"  class="btn btn-success">View Rescue Details</a></td>
+                                 </tr>
+
+                                 {% endfor  %}
+                                 {% else %}
+                                 <div class="alert alert-success"> No List Available</div>
+                                 {% endif %}
+
+                           </table>
+
+
+
+                        </div>
+                    </div>
+                     <div class="clearfix"></div>
+                </div>
+             <div class="clearfix"></div>
+    </div>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+{% endblock %}
+<!-- content-section-ends -->
+<!-- footer-section-starts -->

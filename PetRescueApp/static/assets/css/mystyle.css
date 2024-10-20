@@ -1,0 +1,34 @@
+.sidemenu li{
+    list-style: none;
+
+    background-color: #4597a8;
+    color: #fff;
+    margin-top: 4px;
+    padding: 10px;
+border-radius: 4px;
+text-transform: uppercase;
+
+}
+.sidemenu li:hover{
+
+
+    background-color: #6498a2;
+
+
+}
+.sidemenu li a:link,.sidemenu li a:visited
+{
+    color: #fff;
+    text-decoration: none;
+}
+.frm_heading
+{
+font-size: 1.35em;
+color: #4597a8;
+text-transform: uppercase;
+
+}
+.sideimg
+{
+    margin-top: 10px;
+}

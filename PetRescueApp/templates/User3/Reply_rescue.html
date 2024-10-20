@@ -1,0 +1,130 @@
+{% extends "User3/adoption_header.html" %}
+{% block content %}
+{% load static %}
+
+<div class="content">
+    <div class="main">
+<div class="container">
+<div class="blog-content">
+ <div class="blog-content-head text-left">
+    <div class="frm_heading" style="text-align: center; margin-bottom: 10px;">
+       <h2>Rescue Info List</h2>
+
+     </div>
+</div>
+    <div class="section group">
+
+              <div class="blog_posts">
+                <div class="section group example">
+                    <div class="col-sm-2">
+                        <div class="blog_img">
+                            <ul class="sidemenu">
+                                <li><a href="/ad_Rescue_Info">Rescue Info List</a></li>
+                                <li><a href="/ad_Rescue_Info_Reply">Replied List</a></li>
+                                <li><a href="/ad_adopted_list">Adopted List</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="sideimg">
+                            <img src="{% static 'assets/images/pic8.jpg' %}" alt="" width="100%" height="60%"/>
+                        </div>
+                    </div>
+                        <div class="col-sm-10">
+
+                            <div class="blog_data">
+
+
+
+						 {% if messages %}
+						 <ul class="messages">
+							 {% for message in messages %}
+						   <div class="alert alert-success"> {{message }}</div>
+							 {% endfor %}
+						 </ul>
+						 {% endif %}
+                         {% if data %}
+
+                         <form method="post" action="/save_reply/{{data.rescue_id}}" method="post" id="myform" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+
+                           <div class="form-group">
+                                 <label>Reply</label>
+                               <textarea name="reply"  class="form-control"></textarea>
+                          </div>
+
+                      <div class="col-sm-12"  style="text-align: center;"><div>
+                        <input type="submit" value="Submit" class="myButton">
+              </div></div>
+                   </form>
+                         {% endif %}
+
+                         <script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+                         <script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+                         <script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+ <script>
+     (function ($, W, D)
+   {
+   var JQUERY4U = {};
+   JQUERY4U.UTIL =
+       {
+           setupFormValidation: function ()
+           {
+             $.validator.addMethod(
+     "regex",
+     function(value, element, regexp) {
+         var check = false;
+         return this.optional(element) || regexp.test(value);
+     },
+     "Not a valid Input."
+ );
+
+           //form validation rules
+           $("#myform").validate({
+             rules: {
+
+                         reply: {
+
+                                     required: true,
+
+                                   minlength: 3,
+
+                                 },
+
+
+                               },
+                               messages: {
+
+
+
+               },
+               submitHandler: function (form) {
+               form.submit();
+               }
+           });
+         }
+       }
+   //when the dom has loaded setup form validation rules
+   $(D).ready(function ($) {
+       JQUERY4U.UTIL.setupFormValidation();
+   });
+   })(jQuery, window, document);
+ </script>
+                        </div>
+                    </div>
+                     <div class="clearfix"></div>
+                </div>
+             <div class="clearfix"></div>
+    </div>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+{% endblock %}
+<!-- content-section-ends -->
+<!-- footer-section-starts -->
