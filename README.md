@@ -19,10 +19,6 @@ Clone the repository to your local machine.
 
 
 
-bash
-Copy code
-git clone https://github.com/yourusername/pet-rescue-management.git
-Navigate to the project directory.
 
 bash
 Copy code
